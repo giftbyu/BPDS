@@ -54,7 +54,7 @@ Berdasarkan temuan dari analisis dan model, sebuah desain *dashboard* interaktif
     * Tingkat Atrisi per Departemen.
 * **Visualisasi Faktor Utama:**
     * Grafik batang atrisi berdasarkan `JobSatisfaction`.
-    * *Box plot* untuk distribusi `MonthlyIncome` antara karyawan yang bertahan vs. keluar.
+    * *Bor* untuk distribusi `MonthlyIncome` antara karyawan yang bertahan vs. keluar.
     * Grafik tren atrisi berdasarkan `YearsAtCompany`.
 * **Filter Interaktif:**
     * Kemampuan untuk memfilter data berdasarkan `Departemen`, `Peran Pekerjaan`, `Tingkat Jabatan`, dan `Rentang Usia` untuk analisis yang lebih mendalam.
