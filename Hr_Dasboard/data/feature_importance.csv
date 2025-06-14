@@ -1,0 +1,16 @@
+Feature,Importance
+OverTime_No,0.19354853
+StockOptionLevel,0.09199362
+JobLevel,0.047187686
+MaritalStatus_Single,0.046649963
+EducationField_Technical Degree,0.04474034
+JobRole_Laboratory Technician,0.036110286
+JobRole_Research Scientist,0.02855307
+EducationField_Medical,0.027534867
+JobRole_Healthcare Representative,0.025639946
+JobInvolvement,0.023059271
+EducationField_Life Sciences,0.02294392
+BusinessTravel_Travel_Frequently,0.022273358
+Gender_Female,0.021861432
+TotalWorkingYears,0.019390775
+JobRole_Sales Representative,0.019099686
