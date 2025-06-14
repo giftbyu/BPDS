@@ -1,7 +1,3 @@
-Tentu, berikut adalah penulisan ulang dari analisis Anda ke dalam format Markdown yang lebih naratif dan terstruktur, sesuai dengan contoh yang diberikan.
-
----
-
 # Proyek Analisis: Mengatasi Attrition Karyawan di PT Jaya Jaya Maju
 
 ## Business Understanding
