@@ -1,176 +1,76 @@
-Analisis Faktor Attrition Karyawan dan Pengembangan Dashboard HR di PT Jaya Jaya Maju
+Tentu, berikut adalah penulisan ulang dari analisis Anda ke dalam format Markdown yang lebih naratif dan terstruktur, sesuai dengan contoh yang diberikan.
 
-1. Business Understanding
+---
 
-1.1. Latar Belakang
+# Proyek Analisis: Mengatasi Attrition Karyawan di PT Jaya Jaya Maju
 
-PT Jaya Jaya Maju adalah perusahaan multinasional yang telah beroperasi sejak tahun 2000 dan memiliki skala operasional yang besar dengan lebih dari 1000 karyawan di seluruh Indonesia. Sebagai perusahaan yang matang, manajemen sumber daya manusia menjadi pilar krusial untuk menjaga stabilitas dan pertumbuhan bisnis. Namun, perusahaan saat ini menghadapi tantangan signifikan terkait tingginya employee attrition rate (rasio karyawan yang keluar) yang mencapai lebih dari 10%. Angka ini dianggap tinggi untuk industri sejenis dan dapat menimbulkan dampak negatif yang serius bagi perusahaan.
+## Business Understanding
 
+### Latar Belakang
+PT Jaya Jaya Maju adalah perusahaan multinasional yang telah beroperasi sejak tahun 2000, dengan skala operasional yang besar mencakup lebih dari 1.000 karyawan di seluruh Indonesia. Sebagai perusahaan yang matang, stabilitas sumber daya manusia menjadi pilar krusial bagi pertumbuhan bisnis.
 
+Namun, saat ini perusahaan menghadapi tantangan signifikan terkait tingginya *employee attrition rate* (rasio karyawan keluar) yang telah mencapai lebih dari **10%**. Angka ini dianggap tinggi untuk industri sejenis dan berpotensi menimbulkan dampak negatif yang serius, seperti:
 
-1.2. Permasalahan Bisnis (Business Problem)
+* **Peningkatan Biaya:** Biaya rekrutmen dan pelatihan untuk menggantikan karyawan yang keluar terus meningkat.
+* **Kehilangan Produktivitas:** Adanya kekosongan posisi dan masa adaptasi karyawan baru menyebabkan penurunan produktivitas tim secara keseluruhan.
+* **Hilangnya Pengetahuan Institusional:** Karyawan senior yang pergi membawa serta pengetahuan dan pengalaman berharga yang tidak terdokumentasi.
+* **Penurunan Moral Tim:** Tingkat atrisi yang tinggi dapat menurunkan semangat dan loyalitas karyawan yang masih bertahan.
 
-Tingkat atrisi yang tinggi (>10%) bukan sekadar angka statistik, melainkan representasi dari masalah fundamental yang berdampak langsung pada kinerja perusahaan. Dampak tersebut meliputi:
+Manajemen HR menyadari bahwa tanpa pemahaman mendalam mengenai faktor penyebabnya, upaya untuk menekan angka atrisi akan bersifat reaktif dan tidak efektif.
 
+### Permasalahan Bisnis
+Permasalahan utama yang ingin diselesaikan adalah tingginya tingkat atrisi yang berdampak langsung pada kinerja perusahaan. Oleh karena itu, pertanyaan bisnis yang menjadi fokus proyek ini adalah:
 
+> **"Apa faktor-faktor utama yang mendorong karyawan PT Jaya Jaya Maju untuk berhenti, dan bagaimana kita dapat secara proaktif mengidentifikasi karyawan yang berisiko tinggi untuk keluar?"**
 
-Biaya Rekrutmen: Biaya untuk mencari, mewawancarai, dan merekrut pengganti karyawan yang keluar.
+Untuk menjawabnya, proyek ini memiliki tiga tujuan utama:
+1.  **Analitis:** Mengidentifikasi dan menganalisis faktor-faktor kunci (seperti demografi, kepuasan kerja, peran, dan kompensasi) yang memiliki korelasi terkuat dengan keputusan karyawan untuk berhenti.
+2.  **Prediktif:** Membangun model *machine learning* yang akurat untuk memprediksi probabilitas seorang karyawan akan mengalami atrisi, sehingga memungkinkan intervensi dini.
+3.  **Operasional:** Merancang sebuah *business dashboard* interaktif bagi manajer HR untuk memonitor metrik-metrik terkait atrisi dan faktor pendorongnya secara periodik.
 
-Biaya Pelatihan: Investasi waktu dan sumber daya untuk melatih karyawan baru hingga mencapai tingkat produktivitas optimal.
+## Cakupan Proyek
+Proyek ini mencakup beberapa tahapan utama, antara lain:
+* **Analisis Data Eksploratif:** Melakukan analisis mendalam pada dataset `employee_data.csv` untuk menemukan pola dan wawasan awal.
+* **Pra-pemrosesan Data:** Menyiapkan data agar siap untuk pemodelan, termasuk *encoding* dan *scaling*.
+* **Pengembangan Model Klasifikasi:** Mengembangkan dan membandingkan 3 model klasifikasi: `Regresi Logistik`, `Random Forest`, dan `XGBoost`.
+* **Analisis Dampak SMOTE:** Menganalisis pengaruh teknik *oversampling* (`SMOTE`) untuk menangani data yang tidak seimbang.
+* **Interpretasi Hasil Model:** Mengidentifikasi faktor-faktor paling berpengaruh berdasarkan model dengan performa terbaik.
+* **Penyusunan Desain Dashboard:** Merancang kerangka dan desain untuk *business dashboard* di Metabase.
 
-Kehilangan Produktivitas: Adanya kekosongan posisi dan masa adaptasi karyawan baru menyebabkan penurunan produktivitas tim.
+## Pendekatan Analisis dan Pemodelan
 
-Kehilangan Pengetahuan Institusional: Karyawan yang lama pergi membawa serta pengetahuan dan pengalaman berharga yang tidak terdokumentasi.
+Proyek ini menggunakan pendekatan kuantitatif yang terstruktur, dimulai dari analisis data hingga evaluasi model.
 
-Penurunan Moral Tim: Tingkat atrisi yang tinggi dapat menurunkan semangat dan loyalitas karyawan yang masih bertahan.
+1.  **Pemahaman Data (EDA):** Statistik deskriptif dan visualisasi (histogram, *box plot*, *bar chart*) digunakan untuk memahami distribusi data dan hubungan antar variabel dengan `Attrition`.
+2.  **Pra-pemrosesan Data:** Variabel kategorikal diubah menggunakan *One-Hot Encoding*, dan fitur numerik diskalakan dengan `StandardScaler` untuk mengoptimalkan performa model.
+3.  **Pemodelan Machine Learning:** Dilakukan dua skenario pemodelan:
+    * **Skenario 1:** Melatih model pada data asli yang tidak seimbang (*imbalanced*).
+    * **Skenario 2:** Melatih model pada data yang telah diseimbangkan menggunakan `SMOTE`.
+4.  **Evaluasi Model:** Performa model diukur menggunakan metrik yang komprehensif seperti `Accuracy`, `Precision`, `Recall`, `F1-Score`, dan `AUC-ROC` untuk mendapatkan gambaran yang akurat pada data yang tidak seimbang.
 
-Manajer HR menyadari bahwa tanpa pemahaman mendalam mengenai faktor-faktor penyebabnya, upaya untuk menekan angka atrisi akan bersifat reaktif dan tidak efektif. Oleh karena itu, pertanyaan bisnis utamanya adalah:
+## Business Dashboard
 
+Berdasarkan temuan dari analisis dan model, sebuah desain *dashboard* interaktif diusulkan untuk membantu manajer HR. Isinya mencakup:
 
+* **Key Performance Indicators (KPIs):**
+    * Tingkat Atrisi Keseluruhan (%).
+    * Jumlah Karyawan Keluar.
+    * Tingkat Atrisi per Departemen.
+* **Visualisasi Faktor Utama:**
+    * Grafik batang atrisi berdasarkan `JobSatisfaction`.
+    * *Box plot* untuk distribusi `MonthlyIncome` antara karyawan yang bertahan vs. keluar.
+    * Grafik tren atrisi berdasarkan `YearsAtCompany`.
+* **Filter Interaktif:**
+    * Kemampuan untuk memfilter data berdasarkan `Departemen`, `Peran Pekerjaan`, `Tingkat Jabatan`, dan `Rentang Usia` untuk analisis yang lebih mendalam.
+* **Watchlist Karyawan (Proaktif):**
+    * Daftar karyawan yang diprediksi oleh model memiliki risiko atrisi tertinggi, memungkinkan HR untuk melakukan intervensi secara proaktif.
 
-"Apa faktor-faktor utama yang mendorong karyawan PT Jaya Jaya Maju untuk berhenti, dan bagaimana kita dapat secara proaktif mengidentifikasi karyawan yang berisiko tinggi untuk keluar?"
+## Kesimpulan dan Rekomendasi
 
-1.3. Tujuan Proyek (Project Goals)
+Proyek ini berhasil mengidentifikasi faktor-faktor kunci penyebab atrisi dan membangun kerangka kerja untuk memprediksi serta memonitornya. Model *machine learning* yang dikembangkan dapat menjadi aset berharga bagi perusahaan untuk mengambil keputusan berbasis data.
 
-Untuk menjawab permasalahan tersebut, proyek ini memiliki tiga tujuan utama:
+**Rekomendasi Aksi untuk Perusahaan:**
 
-
-
-Tujuan Analitis: Mengidentifikasi dan menganalisis faktor-faktor kunci (misalnya: demografi, kepuasan kerja, peran, kompensasi) yang memiliki korelasi terkuat dengan keputusan karyawan untuk berhenti.
-
-Tujuan Prediktif: Membangun sebuah model machine learning yang akurat untuk memprediksi probabilitas seorang karyawan akan mengalami atrisi, sehingga memungkinkan intervensi dini.
-
-Tujuan Operasional: Merancang sebuah business dashboard interaktif bagi manajer HR untuk memonitor metrik-metrik terkait atrisi dan faktor-faktor pendorongnya secara real-time atau periodik.
-
-1.4. Cakupan Proyek (Project Scope)
-
-Yang Termasuk (In-Scope):
-
-Analisis data eksploratif pada dataset employee_data.csv.
-
-Pra-pemrosesan data untuk persiapan pemodelan.
-
-Pengembangan dan perbandingan 3 model klasifikasi: Regresi Logistik (sebagai pengganti Regresi Linear yang tidak sesuai untuk masalah klasifikasi), Random Forest, dan XGBoost.
-
-Analisis dampak teknik oversampling SMOTE pada performa model.
-
-Interpretasi hasil model untuk mengidentifikasi faktor-faktor paling berpengaruh.
-
-Penyusunan kerangka dan desain untuk business dashboard.
-
-Yang Tidak Termasuk (Out-of-Scope):
-
-Pengumpulan data baru dari sumber lain (misalnya: survei lanjutan, data absensi).
-
-Implementasi live dashboard ke dalam sistem produksi perusahaan.
-
-Pengembangan dan implementasi kebijakan HR baru berdasarkan hasil analisis (proyek ini hanya memberikan rekomendasi berbasis data).
-
-2. Rencana Program dan Tahapan Proyek
-
-Berikut adalah program kerja yang akan dijalankan, dari analisis data hingga evaluasi model.
-
-
-
-Tahap 1: Pemahaman Data dan Analisis Data Eksploratif (EDA)
-
-Langkah awal adalah memahami dataset yang ada.
-
-
-
-Memuat Data: Mengimpor employee_data.csv ke dalam lingkungan analisis.
-
-Statistik Deskriptif: Melihat ringkasan statistik (rata-rata, median, standar deviasi) untuk fitur numerik.
-
-Pemeriksaan Kualitas Data: Mengecek nilai yang hilang (missing values) dan duplikasi data.
-
-Visualisasi Data:Melihat distribusi variabel target (Attrition) untuk mengonfirmasi adanya ketidakseimbangan kelas (imbalanced data).
-
-Membuat histogram dan box plot untuk fitur numerik (misalnya: MonthlyIncome, Age).
-
-Membuat bar chart untuk fitur kategorikal (misalnya: Department, Gender, JobSatisfaction).
-
-Menganalisis hubungan antara setiap fitur dengan Attrition (misalnya: tingkat atrisi per departemen, perbandingan pendapatan antara karyawan yang bertahan dan yang keluar).
-
-Tahap 2: Pra-pemrosesan Data (Data Preprocessing)
-
-Menyiapkan data agar siap digunakan untuk pemodelan.
-
-
-
-Encoding Variabel Kategorikal: Mengubah variabel non-numerik (seperti Department, Gender) menjadi format numerik menggunakan teknik seperti One-Hot Encoding.
-
-Pemisahan Data: Memisahkan dataset menjadi fitur (X) dan target (y, yaitu Attrition).
-
-Pembagian Train-Test: Membagi data menjadi data latih (training set) dan data uji (testing set) dengan proporsi tertentu (misalnya, 80:20). Ini penting untuk mengevaluasi performa model pada data yang belum pernah dilihat sebelumnya.
-
-Penskalaan Fitur (Feature Scaling): Menyamakan skala fitur-fitur numerik menggunakan StandardScaler agar model seperti Regresi Logistik dapat bekerja optimal.
-
-Tahap 3: Pemodelan Machine Learning
-
-Proses ini akan dibagi menjadi dua skenario utama.
-
-Koreksi Penting: Permintaan awal menyebutkan Linear Regression. Namun, Linear Regression digunakan untuk memprediksi nilai kontinu (misalnya, harga rumah). Karena target kita adalah Attrition (Ya/Tidak), ini adalah masalah klasifikasi. Model linear yang tepat untuk ini adalah Regresi Logistik (Logistic Regression). Saya akan menggunakan model ini sebagai perwakilan model linear.
-
-
-
-Skenario 1: Pemodelan Sebelum SMOTE (Data Imbalanced)
-
-Melatih model Regresi Logistik, Random Forest, dan XGBoost pada training set yang asli (imbalanced).
-
-Melakukan prediksi pada testing set.
-
-Mengevaluasi performa masing-masing model.
-
-Skenario 2: Pemodelan Sesudah SMOTE (Data Balanced)
-
-Menerapkan SMOTE (Synthetic Minority Over-sampling Technique) pada training set. Penting: SMOTE hanya diterapkan pada data latih untuk mencegah kebocoran data (data leakage).
-
-Melatih kembali model Regresi Logistik, Random Forest, dan XGBoost pada training set yang sudah seimbang.
-
-Melakukan prediksi pada testing set yang asli (imbalanced).
-
-Mengevaluasi performa masing-masing model.
-
-Tahap 4: Evaluasi Model
-
-Karena data tidak seimbang, akurasi saja tidak cukup. Metrik evaluasi yang akan digunakan adalah:
-
-
-
-Accuracy: Persentase prediksi yang benar secara keseluruhan.
-
-Precision: Dari semua yang diprediksi "Ya" (akan keluar), berapa persen yang benar-benar keluar. Penting untuk tidak salah menuduh karyawan akan keluar.
-
-Recall (Sensitivity): Dari semua karyawan yang sebenarnya keluar, berapa persen yang berhasil diprediksi oleh model. Penting untuk menangkap sebanyak mungkin kasus atrisi.
-
-F1-Score: Rata-rata harmonik dari Precision dan Recall, memberikan gambaran seimbang.
-
-AUC-ROC: Kemampuan model untuk membedakan antara kelas positif dan negatif.
-
-Hasil dari keenam model (3 model x 2 skenario) akan disajikan dalam tabel perbandingan untuk menentukan model terbaik. Selain itu, akan dianalisis fitur-fitur yang paling berpengaruh (feature importance) dari model terbaik (biasanya Random Forest atau XGBoost).
-
-
-
-Tahap 5: Desain Business Dashboard
-
-Berdasarkan temuan dari analisis dan model, sebuah desain dashboard akan diusulkan. Isinya mencakup:
-
-
-
-Key Performance Indicators (KPIs):Tingkat Atrisi Keseluruhan (%).
-
-Jumlah Karyawan Keluar (bulan ini/kuartal ini).
-
-Tingkat Atrisi per Departemen.
-
-Visualisasi Faktor Utama:Grafik batang: Atrisi berdasarkan Tingkat Kepuasan Kerja (JobSatisfaction), Lingkungan Kerja (EnvironmentSatisfaction).
-
-Box plot: Distribusi Gaji Bulanan (MonthlyIncome) untuk karyawan yang bertahan vs. keluar.
-
-Grafik: Tingkat Atrisi berdasarkan Lama Bekerja (YearsAtCompany).
-
-Filter Interaktif:Kemampuan untuk memfilter data berdasarkan Departemen, Peran Pekerjaan, Tingkat Jabatan, dan Rentang Usia untuk analisis yang lebih mendalam.
-
-(Opsional) Watchlist Karyawan:Daftar karyawan yang diprediksi oleh model memiliki risiko atrisi tertinggi, memungkinkan HR untuk melakukan intervensi proaktif.
-
+* **Fokus pada Faktor Pendorong Utama:** Berdasarkan hasil analisis, perusahaan disarankan untuk meninjau kebijakan terkait faktor-faktor yang paling berpengaruh, seperti kompensasi (`MonthlyIncome`), beban kerja (`OverTime`), dan jenjang karir (`JobLevel`).
+* **Gunakan Dashboard untuk Intervensi Dini:** Manajer HR harus secara aktif menggunakan "Watchlist Karyawan" pada *dashboard* untuk mendekati karyawan yang berisiko tinggi, memahami masalah mereka, dan menawarkan solusi sebelum mereka memutuskan untuk keluar.
+* **Program Retensi Berbasis Segmen:** Dengan menggunakan filter pada *dashboard*, HR dapat merancang program retensi yang lebih spesifik untuk departemen, peran, atau kelompok karyawan dengan tingkat atrisi tertinggi.
